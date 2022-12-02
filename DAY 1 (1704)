@@ -1,0 +1,35 @@
+DETERMINE IF STRING HALVES ARE ALIKE
+
+APPROACH 1:
+class Solution:
+    def halvesAreAlike(self, s: str) -> bool:
+        s = s.lower()
+        a = s[0:len(s)//2]
+        b = s[len(s)//2:len(s)]
+        v = ['a','e','i','o','u']
+        ca,cb = 0, 0
+        for i in a:
+            if i in v:
+                ca+=1
+        for j in b:
+            if j in v:
+                cb+=1
+        if ca==cb:
+            return True
+        return False
+
+APPROACH 2:
+class Solution:
+    def halvesAreAlike(self, s: str) -> bool:
+        s = s.lower()
+        res = 0
+        mid = len(s)//2
+        v = "aeiou"
+        for i in range(mid):
+            if s[i] in v:
+                res+=1
+            if s[mid+i] in v:
+                res-=1
+        if res==0:
+            return True
+        return False
