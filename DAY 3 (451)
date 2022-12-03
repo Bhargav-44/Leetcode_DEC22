@@ -1,0 +1,13 @@
+SORT CHARACTERS BY FREQUENCY
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        a = ""
+        co = Counter(s)
+        val = co.values()
+        val = list(val)
+        key = list(co.keys())
+        for i in range(len(key)):
+            a += (key[val.index(max(val))])*max(val)
+            key.remove(key[val.index(max(val))])
+            val.remove(max(val))
+        return a
