@@ -1,0 +1,21 @@
+MINIMUM AVERAGE DIFFERENCE
+class Solution:
+    def minimumAverageDifference(self, nums: List[int]) -> int:
+        tsum = sum(nums)
+        n = len(nums)
+        csum = 0
+        ans = 0
+        min = 10**5
+        for i in range(n):
+            csum+=nums[i]
+            avg1 = csum//(i+1)
+            if i == n-1:
+                if avg1<min:
+                    return n-1
+                else:
+                    break
+            avg2 = (tsum-csum)//(n-i-1)
+            if abs(avg1-avg2)<min:
+                min = abs(avg1-avg2)
+                ans = i
+        return ans
