@@ -1,0 +1,22 @@
+MAXIMUM DIFFERENCE BETWEEN NODE AND ANCESTOR
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxAncestorDiff(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        self.res = 0
+        def ch(curr, cur_min, cur_max):
+            if not curr:
+                return
+            self.res = max(self.res, abs(cur_min - curr.val), abs(cur_max - curr.val))
+            cur_min = min(cur_min,curr.val)
+            cur_max = max(cur_max,curr.val)
+            ch(curr.left, cur_min, cur_max)
+            ch(curr.right, cur_min, cur_max)
+        ch(root, root.val, root.val)
+        return self.res
