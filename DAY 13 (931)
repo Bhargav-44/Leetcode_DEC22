@@ -1,0 +1,37 @@
+MINIMUM FALLING PATH SUM
+class Solution:
+    def minFallingPathSum(self, matrix: List[List[int]]) -> int:
+        # s = min(matrix[0])
+        # m1 = min(matrix[0])
+        # for row in range(len(matrix)-1):
+        #     col = matrix[row].index(m1)
+        #     r2 = matrix[row+1][col]
+        #     if col-1<0:
+        #         r1 = r2
+        #     else:
+        #         r1 = matrix[row+1][col-1]
+            
+        #     if col+1 >= len(matrix):
+        #         r3 = r2
+        #     else:
+        #         r3 = matrix[row+1][col+1]
+        #     m1 = min(r1,r2,r3)
+        #     s+=m1
+        # return s
+        
+        r=len(matrix)
+        c=len(matrix[0])
+        
+        for i in range(1,r):
+            for j in range(c):
+                
+                if j==0:
+                    matrix[i][j]+=min(matrix[i-1][j],matrix[i-1][j+1])
+                    
+                elif j==c-1:
+                    matrix[i][j]+=min(matrix[i-1][j],matrix[i-1][j-1])
+                    
+                else:
+                    matrix[i][j]+=min(matrix[i-1][j],matrix[i-1][j-1],matrix[i-1][j+1])
+        
+        return min(matrix[r-1])
